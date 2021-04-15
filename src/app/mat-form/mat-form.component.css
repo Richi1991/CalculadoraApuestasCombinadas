@@ -1,0 +1,27 @@
+.table { 
+    width: 200px;
+    padding: 10px;
+}
+
+.table-cell__calculator-textfield{
+    width: 80px;
+}
+
+.btn.btn-primary {
+    margin-left: 20px;
+}
+
+.ganancia-combinada {
+    color: rgb(8, 201, 2);
+    font-weight: bold;
+    text-align: center;
+}
+
+.tabla-cuotas {
+    width: 20%;
+    float: left;
+}
+.tabla-resultados {
+    width: 80%;
+    float: right;
+}

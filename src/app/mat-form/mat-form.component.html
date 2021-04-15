@@ -1,0 +1,63 @@
+<hr/>
+<body>
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{sistemaDescripcion}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem *ngFor="let sistema of sistemas" [value]="sistema.valorSuperior" 
+                        (click)="obtenerSistema(sistema.valorInferior, sistema.valorSuperior, sistema.viewValue)">{{sistema.viewValue}}</button>
+            </div>
+        </div>
+    </div>
+<hr/>
+    <p></p>
+    <div class="tabla-cuotas">
+        <table class="table">
+            <tr *ngFor="let cuota of cuotaList; let i = index"> 
+                <td>Cuota {{cuota.id}}</td>
+                <td>
+                    <span type="number" class="table-cell__calculator-textfield form-control text-right"
+                        contenteditable="true" (keyup)="cambiarValor($event)" 
+                        (blur)="actualizarCuotas(cuota.id, $event)">{{cuotaList[i].valor}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Importe</td>
+                <td>
+                    <span type="number" class="table-cell__calculator-textfield form-control text-right"
+                        contenteditable="true" (keyup)="cambiarValor($event)"
+                        (blur)="actualizarImporte($event)">{{importeApuesta}}</span>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <div class="boton-combinaciones">
+            <button (click)="calcularCombinaciones()" class="btn btn-primary" type="submit">CALCULAR</button>
+        </div>
+    </div>
+    <div class="tabla-resultados" *ngIf="mostrarTablaResultadosCombinada">
+        <table class="table">
+            <tr>
+                <td></td>
+                <td>Ganancia en €</td>
+            </tr>
+            <tr *ngFor="let combinacion of numeroCombinacionesList; let i = index">
+                <td>{{i + 1}}</td> 
+                <td class="ganancia-combinada">{{resultadoCombinadasList[i]}}</td>
+            </tr>
+            <tr>
+                <td>GANANCIA TOTAL</td>
+                <td class="ganancia-combinada">{{gananciaTotalSinImporte}}</td>
+            </tr>
+            <tr>
+                <td>GANANCIA</td>
+                <td class="ganancia-combinada">{{gananciaTotalCombinada}}</td>
+            </tr>
+            <tr>
+                <td>GANANCIA APUESTA SIMPLE</td> 
+                <span class="table-cell__calculator-textfield form-control text-center">{{cuotaFinal}}</span> 
+            </tr>
+        </table>
+    </div>
+
+<body>
